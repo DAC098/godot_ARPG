@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://bee57hb2qpr1k"]
+
+[ext_resource type="PackedScene" uid="uid://bpf7vfmpkqtuf" path="res://Player/player.tscn" id="2_h6nq8"]
+[ext_resource type="PackedScene" uid="uid://bnu5mlarijtmq" path="res://World/bush.tscn" id="2_ngr1j"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_b8cal"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0aeri"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_pa5h7"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3gew6"]
+normal = Vector2(-1, 0)
+
+[node name="World" type="Node2D"]
+y_sort_enabled = true
+
+[node name="WorldBoundry" type="StaticBody2D" parent="."]
+
+[node name="West" type="CollisionShape2D" parent="WorldBoundry"]
+position = Vector2(0, 96)
+shape = SubResource("WorldBoundaryShape2D_b8cal")
+
+[node name="North" type="CollisionShape2D" parent="WorldBoundry"]
+position = Vector2(160, 0)
+shape = SubResource("WorldBoundaryShape2D_0aeri")
+
+[node name="South" type="CollisionShape2D" parent="WorldBoundry"]
+position = Vector2(160, 192)
+shape = SubResource("WorldBoundaryShape2D_pa5h7")
+
+[node name="East" type="CollisionShape2D" parent="WorldBoundry"]
+position = Vector2(320, 96)
+shape = SubResource("WorldBoundaryShape2D_3gew6")
+
+[node name="Bush" parent="." instance=ExtResource("2_ngr1j")]
+position = Vector2(56, 40)
+
+[node name="Bush2" parent="." instance=ExtResource("2_ngr1j")]
+position = Vector2(88, 120)
+
+[node name="Bush3" parent="." instance=ExtResource("2_ngr1j")]
+position = Vector2(216, 136)
+
+[node name="Bush4" parent="." instance=ExtResource("2_ngr1j")]
+position = Vector2(200, 72)
+
+[node name="Player" parent="." instance=ExtResource("2_h6nq8")]
+position = Vector2(128, 88)
