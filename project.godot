@@ -91,8 +91,12 @@ roll={
 
 2d_physics/layer_1="World"
 2d_physics/layer_2="Character"
-2d_physics/layer_3="Attacking"
-2d_physics/layer_4="Attackable"
+2d_physics/layer_3="Enemy"
+2d_physics/layer_4="Destructable"
+2d_physics/layer_9="CharacterAttack"
+2d_physics/layer_10="EnemyAttack"
+2d_physics/layer_17="CharacterAttackable"
+2d_physics/layer_18="EnemyAttackable"
 
 [rendering]
 

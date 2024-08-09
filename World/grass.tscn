@@ -60,10 +60,12 @@ texture = ExtResource("1_2gcw8")
 
 [node name="death_anim" type="AnimatedSprite2D" parent="."]
 visible = false
+position = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_6xnk4")
 
 [node name="HurtBox" parent="." instance=ExtResource("3_nebge")]
-collision_mask = 4
+collision_layer = 8
+collision_mask = 768
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
 position = Vector2(8, 8)

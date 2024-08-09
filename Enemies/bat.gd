@@ -19,6 +19,7 @@ var state = Idle
 
 @onready var alive_anim = $alive_anim
 @onready var death_anim = $death_anim
+@onready var hit_box_collider = $HurtBox/CollisionShape2D
 @onready var hurt_box_collider = $HurtBox/CollisionShape2D
 @onready var hit_effect = $HitEffect
 @onready var detection = $PlayerDetection
@@ -43,7 +44,10 @@ func seek_player():
 func _on_hurt_box_area_entered(area):
 	velocity = area.knockback_vector * 150
 
-	if !stats.apply_damage(area.damage):
+	if !stats.apply_damage(area):
+		state = Idle
+		
+		hit_box_collider.set_deferred("disabled", true)
 		hurt_box_collider.set_deferred("disabled", true)
 		
 		alive_anim.stop()

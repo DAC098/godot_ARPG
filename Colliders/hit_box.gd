@@ -1,4 +1,8 @@
 extends Area2D
 
-@export var damage: int = 1
-@export var knockback: int = 0
+class_name HitBox
+
+@export_category("Damage")
+@export var physical: int = 1
+
+@export_category("")

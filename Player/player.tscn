@@ -1,10 +1,12 @@
-[gd_scene load_steps=61 format=3 uid="uid://bpf7vfmpkqtuf"]
+[gd_scene load_steps=64 format=3 uid="uid://bpf7vfmpkqtuf"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_fnic3"]
 [ext_resource type="PackedScene" uid="uid://dp3muv45wsfs" path="res://stats.tscn" id="2_3iye8"]
 [ext_resource type="Texture2D" uid="uid://bxdbcbcmrr53x" path="res://Player/Player.png" id="2_qace6"]
 [ext_resource type="PackedScene" uid="uid://duuv42oi2721x" path="res://Colliders/hit_box.tscn" id="3_e20jo"]
 [ext_resource type="Script" path="res://Player/sword.gd" id="4_vuo7r"]
+[ext_resource type="PackedScene" uid="uid://buc3irgjic0pa" path="res://Colliders/hurt_box.tscn" id="6_dn1wb"]
+[ext_resource type="PackedScene" uid="uid://0ymhm763rhnn" path="res://Effects/hit_effect.tscn" id="7_inirs"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xmkvg"]
 radius = 4.0
@@ -868,6 +870,10 @@ graph_offset = Vector2(-129, -143)
 radius = 11.0
 height = 34.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3f57i"]
+radius = 5.0
+height = 14.0
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_fnic3")
@@ -883,6 +889,7 @@ hframes = 60
 frame = 36
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 rotation = -1.5708
 shape = SubResource("CapsuleShape2D_xmkvg")
 
@@ -906,14 +913,28 @@ position = Vector2(0, -6)
 rotation = 2.35619
 
 [node name="SwordHitBox" parent="SwordPivot" instance=ExtResource("3_e20jo")]
+visible = false
 position = Vector2(15, 0)
-collision_layer = 4
-collision_mask = 8
+collision_layer = 256
+collision_mask = 131080
 script = ExtResource("4_vuo7r")
-damage = 3
 
 [node name="CollisionShape2D" parent="SwordPivot/SwordHitBox" index="0"]
 shape = SubResource("CapsuleShape2D_a2kmm")
 disabled = true
 
+[node name="HurtBox" parent="." instance=ExtResource("6_dn1wb")]
+collision_layer = 65536
+collision_mask = 512
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2(0, -3)
+shape = SubResource("CapsuleShape2D_3f57i")
+
+[node name="HitEffect" parent="." instance=ExtResource("7_inirs")]
+position = Vector2(0, -8)
+
+[connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
+
 [editable path="SwordPivot/SwordHitBox"]
+[editable path="HurtBox"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bee57hb2qpr1k"]
+[gd_scene load_steps=18 format=3 uid="uid://bee57hb2qpr1k"]
 
 [ext_resource type="Texture2D" uid="uid://d4l4jhdlywnag" path="res://World/GrassBackground.png" id="1_ig82e"]
 [ext_resource type="Texture2D" uid="uid://d4eahk7jdcona" path="res://World/DirtTileset.png" id="2_e0xqp"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cckimorfbnimu" path="res://World/CliffTileset.png" id="3_q038w"]
 [ext_resource type="PackedScene" uid="uid://m786rhvw0721" path="res://World/grass.tscn" id="6_trct2"]
 [ext_resource type="PackedScene" uid="uid://c6lhogperjnod" path="res://Enemies/bat.tscn" id="7_b1vvj"]
+[ext_resource type="PackedScene" uid="uid://cumlu7qpf3auv" path="res://World/tree.tscn" id="7_i5f68"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_b8cal"]
 normal = Vector2(1, 0)
@@ -919,7 +920,7 @@ format = 2
 layer_0/tile_data = PackedInt32Array(5, 0, 2, 6, 65536, 2, 7, 65536, 2, 8, 393216, 1, 9, 131072, 1, -65527, 131072, 0, -65528, 65536, 0, -65529, 65536, 0, -65530, 65536, 0, -65531, 0, 0, 65544, 0, 1, 131080, 0, 1, 131081, 131072, 1, 65545, 131072, 1, 196617, 131072, 2, 196616, 0, 2, 0, 131072, 2, -65536, 131072, 0, -1, 0, 0, 65535, 0, 2, 327680, 458752, 1, 262144, 131072, 1, 327679, 0, 1, 262143, 0, 0, 196608, 131072, 0, 393215, 0, 2, 393217, 131072, 3, 393216, 262144, 3)
 
 [node name="Player" parent="." instance=ExtResource("2_h6nq8")]
-position = Vector2(128, 88)
+position = Vector2(72, 88)
 
 [node name="bushes" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -1006,6 +1007,27 @@ position = Vector2(296, 80)
 
 [node name="Grass14" parent="grasses" instance=ExtResource("6_trct2")]
 position = Vector2(240, 32)
+
+[node name="trees" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Tree" parent="trees" instance=ExtResource("7_i5f68")]
+position = Vector2(128, 72)
+
+[node name="Tree2" parent="trees" instance=ExtResource("7_i5f68")]
+position = Vector2(272, 32)
+
+[node name="Tree3" parent="trees" instance=ExtResource("7_i5f68")]
+position = Vector2(304, 64)
+
+[node name="Tree4" parent="trees" instance=ExtResource("7_i5f68")]
+position = Vector2(240, 152)
+
+[node name="Tree5" parent="trees" instance=ExtResource("7_i5f68")]
+position = Vector2(168, 168)
+
+[node name="Tree6" parent="trees" instance=ExtResource("7_i5f68")]
+position = Vector2(48, 72)
 
 [node name="Bat" parent="." instance=ExtResource("7_b1vvj")]
 position = Vector2(176, 48)
