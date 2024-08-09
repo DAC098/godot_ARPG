@@ -6,6 +6,17 @@ extends CharacterBody2D
 var base_acceleration = 400
 var base_friction = 400
 var base_max_speed = 100
+var base_roll_speed = 150
+
+enum {
+	Move,
+	Roll,
+	Attack,
+}
+
+var state = Move
+
+var roll_vector = Vector2.LEFT
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -13,30 +24,78 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var animation_player = $AnimationPlayer
 @onready var animation_tree = $AnimationTree
 @onready var animation_state = animation_tree.get("parameters/playback")
+@onready var sword_hit_box = $SwordPivot/SwordHitBox
 
 func _ready():
 	print("Player script ready")
+	
+	animation_tree.active = true
+	
+	sword_hit_box.knockback_vector = roll_vector
+	
+	update_anim_tree_blend(roll_vector)
 
-func _physics_process(delta):
+func _process(delta):
+	match state:
+		Move: move_state(delta)
+		Attack: attack_state(delta)
+		Roll: roll_state(delta)
+
+func attack_state(_delta):
+	animation_state.travel("attack")
+	
+func attack_animation_finished():
+	state = Move
+
+func roll_state(_delta):
+	animation_state.travel("roll")
+	
+	velocity = roll_vector * base_roll_speed
+	
+	move_and_slide()
+
+func roll_animation_finished():
+	if get_input_vector() == Vector2.ZERO:
+		velocity = roll_vector * 0.8
+	
+	state = Move
+
+func update_anim_tree_blend(vector):
+	animation_tree.set("parameters/idle/blend_position", vector)
+	animation_tree.set("parameters/run/blend_position", vector)
+	animation_tree.set("parameters/attack/blend_position", vector)
+	animation_tree.set("parameters/roll/blend_position", vector)
+	
+func get_input_vector():
 	var input_vector = Vector2.ZERO
-	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
-	input_vector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
+	input_vector.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+	input_vector.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
 
-	input_vector = input_vector.normalized()
+	return input_vector.normalized()
+
+func move_state(delta):
+	var input_vector = get_input_vector()
 
 	if input_vector != Vector2.ZERO:
-		animation_tree.set("parameters/idle/blend_position", input_vector)
-		animation_tree.set("parameters/run/blend_position", input_vector)
+		roll_vector = input_vector
+		sword_hit_box.knockback_vector = input_vector
+
+		update_anim_tree_blend(input_vector)
 
 		animation_state.travel("run")
 
 		velocity = velocity.move_toward(input_vector * base_max_speed, base_acceleration * delta)
 	else:
 		animation_state.travel("idle")
-		
+
 		velocity = velocity.move_toward(Vector2.ZERO, base_friction * delta)
 
 	move_and_slide()
+	
+	if Input.is_action_just_pressed("attack"):
+		state = Attack
+	elif Input.is_action_just_pressed("roll"):
+		state = Roll
 
 	## Add the gravity.
 	#if not is_on_floor():
