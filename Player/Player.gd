@@ -3,10 +3,13 @@ extends CharacterBody2D
 #const SPEED = 300.0
 #const JUMP_VELOCITY = -400.0
 
-var base_acceleration = 400
-var base_friction = 400
-var base_max_speed = 100
-var base_roll_speed = 150
+@export_category("Movement")
+@export var acceleration = 400
+@export var friction = 400
+@export var max_speed = 100
+@export var roll_speed = 150
+
+@export_category("")
 
 enum {
 	Move,
@@ -50,7 +53,7 @@ func attack_animation_finished():
 func roll_state(_delta):
 	animation_state.travel("roll")
 	
-	velocity = roll_vector * base_roll_speed
+	velocity = roll_vector * roll_speed
 	
 	move_and_slide()
 
@@ -84,11 +87,11 @@ func move_state(delta):
 
 		animation_state.travel("run")
 
-		velocity = velocity.move_toward(input_vector * base_max_speed, base_acceleration * delta)
+		velocity = velocity.move_toward(input_vector * max_speed, acceleration * delta)
 	else:
 		animation_state.travel("idle")
 
-		velocity = velocity.move_toward(Vector2.ZERO, base_friction * delta)
+		velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
 
 	move_and_slide()
 	
