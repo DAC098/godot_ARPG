@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://j2jfj0w6gcx4"]
+
+[ext_resource type="Script" path="res://Colliders/soft_collision.gd" id="1_f88nq"]
+
+[node name="SoftCollision" type="Area2D"]
+collision_layer = 16777216
+collision_mask = 16777216
+script = ExtResource("1_f88nq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+debug_color = Color(0.894923, 0.000210235, 0.779726, 0.42)

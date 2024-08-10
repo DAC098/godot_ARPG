@@ -19,8 +19,11 @@ var state = Idle
 
 @onready var alive_anim = $alive_anim
 @onready var death_anim = $death_anim
+
 @onready var hit_box_collider = $HurtBox/CollisionShape2D
 @onready var hurt_box_collider = $HurtBox/CollisionShape2D
+@onready var soft_collider = $SoftCollision
+
 @onready var hit_effect = $HitEffect
 @onready var detection = $PlayerDetection
 
@@ -35,6 +38,11 @@ func _physics_process(delta):
 			velocity = velocity.move_toward(direction * max_speed, acceleration * delta)
 
 	alive_anim.flip_h = velocity.x < 0
+
+	var colliding = soft_collider.get_push_vector()
+	
+	if colliding != Vector2.ZERO:
+		velocity += colliding * delta * 200
 
 	move_and_slide()
 
