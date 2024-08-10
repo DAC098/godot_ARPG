@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+class_name Bat
+
 @export_category("Movement")
 @export var acceleration = 200
 @export var friction = 400
