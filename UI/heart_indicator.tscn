@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfikrlqf7njn4"]
+
+[ext_resource type="Script" path="res://UI/heart_indicator.gd" id="1_0chsh"]
+[ext_resource type="Texture2D" uid="uid://cpgj6d75mnwo" path="res://UI/HeartUIEmpty.png" id="1_sqenh"]
+[ext_resource type="Texture2D" uid="uid://d2u5t16o0dqku" path="res://UI/HeartUIFull.png" id="2_e4cer"]
+
+[node name="HeartIndicator" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1920.0
+offset_bottom = -1080.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0chsh")
+
+[node name="empty" type="TextureRect" parent="."]
+clip_contents = true
+layout_mode = 0
+offset_right = 15.0
+offset_bottom = 11.0
+scale = Vector2(2, 2)
+texture = ExtResource("1_sqenh")
+expand_mode = 1
+stretch_mode = 2
+
+[node name="full" type="TextureRect" parent="."]
+clip_contents = true
+layout_mode = 0
+offset_bottom = 11.0
+scale = Vector2(2, 2)
+texture = ExtResource("2_e4cer")
+expand_mode = 1
+stretch_mode = 2

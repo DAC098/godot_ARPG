@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://civrbf4u0lg6r"]
+
+[ext_resource type="Script" path="res://UI/ui.gd" id="1_5sg2s"]
+
+[node name="Ui" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5sg2s")
+hearts_vert_padding = -4
+hearts_horz_padding = 4
+
+[node name="hearts" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 60.0
+offset_bottom = 60.0

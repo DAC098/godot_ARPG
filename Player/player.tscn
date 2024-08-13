@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://bpf7vfmpkqtuf"]
+[gd_scene load_steps=65 format=3 uid="uid://bpf7vfmpkqtuf"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_fnic3"]
 [ext_resource type="PackedScene" uid="uid://dp3muv45wsfs" path="res://stats.tscn" id="2_3iye8"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Player/sword.gd" id="4_vuo7r"]
 [ext_resource type="PackedScene" uid="uid://buc3irgjic0pa" path="res://Colliders/hurt_box.tscn" id="6_dn1wb"]
 [ext_resource type="PackedScene" uid="uid://0ymhm763rhnn" path="res://Effects/hit_effect.tscn" id="7_inirs"]
+[ext_resource type="PackedScene" uid="uid://cfkbepxxuvclq" path="res://Effects/death_effect.tscn" id="8_w1ayo"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xmkvg"]
 radius = 4.0
@@ -879,8 +880,8 @@ collision_layer = 2
 script = ExtResource("1_fnic3")
 
 [node name="Stats" parent="." instance=ExtResource("2_3iye8")]
-max_health = 10
-health = 10
+max_health = 15
+health = 12
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -9)
@@ -933,6 +934,11 @@ shape = SubResource("CapsuleShape2D_3f57i")
 
 [node name="HitEffect" parent="." instance=ExtResource("7_inirs")]
 position = Vector2(0, -8)
+
+[node name="DeathEffect" parent="." instance=ExtResource("8_w1ayo")]
+position = Vector2(0, 8)
+frame = 0
+frame_progress = 0.0
 
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 

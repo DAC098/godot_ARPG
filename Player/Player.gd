@@ -11,32 +11,37 @@ class_name Player
 @export var max_speed: int = 100
 @export var roll_speed: int = 150
 
-@export_category("God")
-var invincible: bool = false
-
 @export_category("")
 
-enum {
+enum State {
+	Dead,
 	Move,
 	Roll,
 	Attack,
 }
 
-var state = Move
+var state = State.Move
 
 var roll_vector = Vector2.LEFT
 
-@onready var stats = $Stats
+@onready var stats: Stats = $Stats
+
+@onready var sprite: Sprite2D = $Sprite2D
 
 @onready var animation_player = $AnimationPlayer
 @onready var animation_tree = $AnimationTree
 @onready var animation_state = animation_tree.get("parameters/playback")
+
 @onready var sword_hit_box = $SwordPivot/SwordHitBox
+
 @onready var hurt_box = $HurtBox
+@onready var hurt_box_collider = $HurtBox/CollisionShape2D
+
 @onready var hit_effect = $HitEffect
+@onready var death_effect = $DeathEffect
 
 func _ready():
-	print("Player script ready")
+	print("Player ready")
 	
 	animation_tree.active = true
 	
@@ -46,9 +51,9 @@ func _ready():
 
 func _process(delta):
 	match state:
-		Move: move_state(delta)
-		Attack: attack_state(delta)
-		Roll: roll_state(delta)
+		State.Move: move_state(delta)
+		State.Attack: attack_state(delta)
+		State.Roll: roll_state(delta)
 
 func attack_state(_delta):
 	velocity = Vector2.ZERO
@@ -56,7 +61,7 @@ func attack_state(_delta):
 	animation_state.travel("attack")
 	
 func attack_animation_finished():
-	state = Move
+	state = State.Move
 
 func roll_state(_delta):
 	animation_state.travel("roll")
@@ -72,7 +77,7 @@ func roll_animation_finished():
 	
 	hurt_box.monitoring = true;
 	
-	state = Move
+	state = State.Move
 
 func update_anim_tree_blend(vector):
 	animation_tree.set("parameters/idle/blend_position", vector)
@@ -107,17 +112,18 @@ func move_state(delta):
 	move_and_slide()
 
 	if Input.is_action_just_pressed("attack"):
-		state = Attack
+		state = State.Attack
 	elif Input.is_action_just_pressed("roll"):
-		state = Roll
+		state = State.Roll
+
+func disable_hurtbox(value: bool):
+	hurt_box_collider.set_deferred("disabled", value)
 
 func _on_hurt_box_area_entered(area):
-	if invincible:
-		pass
-
-	if !stats.apply_damage(area):
-		print("player dead")
-	else:
-		print("player hit for ", area)
-
+	if stats.apply_damage(area):
 		hit_effect.run_effect()
+	else:
+		state = State.Dead
+
+		sprite.visible = false
+		death_effect.run_effect()

@@ -1,5 +1,7 @@
 extends Node
 
+class_name Stats
+
 @export_category("Health")
 @export var max_health: int = 1
 @export var health: int = 1
@@ -9,11 +11,14 @@ signal health_change
 
 func apply_damage(damage: HitBox):
 	if health > 0:
-		health -= damage.physical
+		if damage.physical > health:
+			health = 0
+		else:
+			health -= damage.physical
 
-		emit_signal("no_health")
-	else:
 		emit_signal("health_change", health)
+	else:
+		emit_signal("no_health")
 
 	return health > 0
 

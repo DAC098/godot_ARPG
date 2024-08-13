@@ -22,7 +22,7 @@ var state = Idle
 @onready var alive_anim = $alive_anim
 @onready var death_anim = $death_anim
 
-@onready var hit_box_collider = $HurtBox/CollisionShape2D
+@onready var hit_box_collider = $HitBox/CollisionShape2D
 @onready var hurt_box_collider = $HurtBox/CollisionShape2D
 @onready var soft_collider = $SoftCollision
 
