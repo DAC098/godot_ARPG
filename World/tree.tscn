@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cumlu7qpf3auv"]
+[gd_scene load_steps=4 format=3 uid="uid://cumlu7qpf3auv"]
 
+[ext_resource type="Texture2D" uid="uid://cxtxovwbfo12n" path="res://Shadows/LargeShadow.png" id="1_0i8tl"]
 [ext_resource type="Texture2D" uid="uid://c1h6574lrb1pv" path="res://World/Tree.png" id="1_2tia6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jey4t"]
@@ -7,6 +8,9 @@ radius = 4.0
 height = 18.0
 
 [node name="Tree" type="StaticBody2D"]
+
+[node name="Shadow" type="Sprite2D" parent="."]
+texture = ExtResource("1_0i8tl")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -20)

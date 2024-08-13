@@ -33,7 +33,7 @@ func set_current(state: HeartState):
 
 	current = state
 
-	if full != empty:
+	if full != null:
 		update_current()
 
 func update_potential():

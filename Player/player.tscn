@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://bpf7vfmpkqtuf"]
+[gd_scene load_steps=66 format=3 uid="uid://bpf7vfmpkqtuf"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_fnic3"]
 [ext_resource type="PackedScene" uid="uid://dp3muv45wsfs" path="res://stats.tscn" id="2_3iye8"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://buc3irgjic0pa" path="res://Colliders/hurt_box.tscn" id="6_dn1wb"]
 [ext_resource type="PackedScene" uid="uid://0ymhm763rhnn" path="res://Effects/hit_effect.tscn" id="7_inirs"]
 [ext_resource type="PackedScene" uid="uid://cfkbepxxuvclq" path="res://Effects/death_effect.tscn" id="8_w1ayo"]
+[ext_resource type="Texture2D" uid="uid://bgqds8mcsvlo8" path="res://Shadows/MediumShadow.png" id="9_yuc80"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xmkvg"]
 radius = 4.0
@@ -882,6 +883,10 @@ script = ExtResource("1_fnic3")
 [node name="Stats" parent="." instance=ExtResource("2_3iye8")]
 max_health = 15
 health = 12
+
+[node name="Shadow" type="Sprite2D" parent="."]
+position = Vector2(0, 1)
+texture = ExtResource("9_yuc80")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -9)
