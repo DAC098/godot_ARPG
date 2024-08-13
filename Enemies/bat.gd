@@ -63,8 +63,7 @@ func _on_hurt_box_area_entered(area):
 		alive_anim.stop()
 		alive_anim.visible = false
 		
-		death_anim.visible = true
-		death_anim.play("default")
+		death_anim.run_effect()
 	else:
 		hit_effect.run_effect()
 

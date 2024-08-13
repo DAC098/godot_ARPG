@@ -2,9 +2,6 @@ extends CharacterBody2D
 
 class_name Player
 
-#const SPEED = 300.0
-#const JUMP_VELOCITY = -400.0
-
 @export_category("Movement")
 @export var acceleration: int = 400
 @export var friction: int = 400
@@ -14,19 +11,20 @@ class_name Player
 @export_category("")
 
 enum State {
-	Dead,
 	Move,
 	Roll,
 	Attack,
 }
 
+var dead = false
 var state = State.Move
 
 var roll_vector = Vector2.LEFT
 
-@onready var stats: Stats = $Stats
+@onready var stats = $Stats
 
-@onready var sprite: Sprite2D = $Sprite2D
+@onready var sprite = $Sprite2D
+@onready var shadow = $Shadow
 
 @onready var animation_player = $AnimationPlayer
 @onready var animation_tree = $AnimationTree
@@ -37,19 +35,24 @@ var roll_vector = Vector2.LEFT
 @onready var hurt_box = $HurtBox
 @onready var hurt_box_collider = $HurtBox/CollisionShape2D
 
+@onready var hurt_sound = $HurtSound
+
 @onready var hit_effect = $HitEffect
 @onready var death_effect = $DeathEffect
 
 func _ready():
 	print("Player ready")
-	
+
 	animation_tree.active = true
-	
+
 	sword_hit_box.knockback_vector = roll_vector
-	
+
 	update_anim_tree_blend(roll_vector)
 
-func _process(delta):
+func _physics_process(delta):
+	if dead:
+		return
+
 	match state:
 		State.Move: move_state(delta)
 		State.Attack: attack_state(delta)
@@ -84,7 +87,7 @@ func update_anim_tree_blend(vector):
 	animation_tree.set("parameters/run/blend_position", vector)
 	animation_tree.set("parameters/attack/blend_position", vector)
 	animation_tree.set("parameters/roll/blend_position", vector)
-	
+
 func get_input_vector():
 	var input_vector = Vector2.ZERO
 	input_vector.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
@@ -119,11 +122,26 @@ func move_state(delta):
 func disable_hurtbox(value: bool):
 	hurt_box_collider.set_deferred("disabled", value)
 
+func set_alive():
+	dead = false
+	
+	sprite.visible = true
+	shadow.visible = true
+
+func set_dead():
+	dead = true
+	
+	sprite.visible = false
+	shadow.visible = false
+
 func _on_hurt_box_area_entered(area):
 	if stats.apply_damage(area):
 		hit_effect.run_effect()
+		hurt_sound.play()
 	else:
-		state = State.Dead
+		dead = true
 
 		sprite.visible = false
+		shadow.visible = false
+
 		death_effect.run_effect()

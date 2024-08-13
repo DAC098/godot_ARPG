@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://bpf7vfmpkqtuf"]
+[gd_scene load_steps=69 format=3 uid="uid://bpf7vfmpkqtuf"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_fnic3"]
 [ext_resource type="PackedScene" uid="uid://dp3muv45wsfs" path="res://stats.tscn" id="2_3iye8"]
@@ -9,6 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://0ymhm763rhnn" path="res://Effects/hit_effect.tscn" id="7_inirs"]
 [ext_resource type="PackedScene" uid="uid://cfkbepxxuvclq" path="res://Effects/death_effect.tscn" id="8_w1ayo"]
 [ext_resource type="Texture2D" uid="uid://bgqds8mcsvlo8" path="res://Shadows/MediumShadow.png" id="9_yuc80"]
+[ext_resource type="AudioStream" uid="uid://mnu75g6cafdt" path="res://Music and Sounds/Hurt.wav" id="10_hak76"]
+[ext_resource type="AudioStream" uid="uid://dp3vr6ad3kb5j" path="res://Music and Sounds/Evade.wav" id="11_gemto"]
+[ext_resource type="AudioStream" uid="uid://cinxl6prorfic" path="res://Music and Sounds/Swipe.wav" id="12_v88bg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xmkvg"]
 radius = 4.0
@@ -67,6 +70,21 @@ tracks/3/keys = {
 "update": 1,
 "values": [false, true]
 }
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SwipeSound")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_v88bg")
+}],
+"times": PackedFloat32Array(0.1)
+}
+tracks/4/use_blend = true
 
 [sub_resource type="Animation" id="Animation_uqg3m"]
 resource_name = "attack_NW"
@@ -121,6 +139,21 @@ tracks/3/keys = {
 "update": 1,
 "values": [false, true]
 }
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SwipeSound")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_v88bg")
+}],
+"times": PackedFloat32Array(0.1)
+}
+tracks/4/use_blend = true
 
 [sub_resource type="Animation" id="Animation_y8hvu"]
 resource_name = "attack_SE"
@@ -175,6 +208,21 @@ tracks/3/keys = {
 "update": 1,
 "values": [false, true]
 }
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SwipeSound")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_v88bg")
+}],
+"times": PackedFloat32Array(0.1)
+}
+tracks/4/use_blend = true
 
 [sub_resource type="Animation" id="Animation_ks36x"]
 resource_name = "attack_SW"
@@ -229,6 +277,21 @@ tracks/3/keys = {
 "update": 1,
 "values": [false, true]
 }
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SwipeSound")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_v88bg")
+}],
+"times": PackedFloat32Array(0.1)
+}
+tracks/4/use_blend = true
 
 [sub_resource type="Animation" id="Animation_2mstg"]
 resource_name = "attack_down"
@@ -283,6 +346,21 @@ tracks/3/keys = {
 "update": 1,
 "values": [false, true]
 }
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SwipeSound")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_v88bg")
+}],
+"times": PackedFloat32Array(0.1)
+}
+tracks/4/use_blend = true
 
 [sub_resource type="Animation" id="Animation_vwd3o"]
 resource_name = "attack_left"
@@ -337,6 +415,21 @@ tracks/3/keys = {
 "update": 1,
 "values": [false, true]
 }
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SwipeSound")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_v88bg")
+}],
+"times": PackedFloat32Array(0.1)
+}
+tracks/4/use_blend = true
 
 [sub_resource type="Animation" id="Animation_fv313"]
 resource_name = "attack_right"
@@ -391,6 +484,21 @@ tracks/3/keys = {
 "update": 1,
 "values": [false, true]
 }
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SwipeSound")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_v88bg")
+}],
+"times": PackedFloat32Array(0.1)
+}
+tracks/4/use_blend = true
 
 [sub_resource type="Animation" id="Animation_h54s2"]
 resource_name = "attack_up"
@@ -445,6 +553,21 @@ tracks/3/keys = {
 "update": 1,
 "values": [false, true]
 }
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SwipeSound")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_v88bg")
+}],
+"times": PackedFloat32Array(0.1)
+}
+tracks/4/use_blend = true
 
 [sub_resource type="Animation" id="Animation_i754x"]
 resource_name = "idle_down"
@@ -543,6 +666,21 @@ tracks/1/keys = {
 "method": &"roll_animation_finished"
 }]
 }
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("EvadeSound")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_gemto")
+}],
+"times": PackedFloat32Array(0.2)
+}
+tracks/2/use_blend = true
 
 [sub_resource type="Animation" id="Animation_l1l3c"]
 resource_name = "roll_left"
@@ -573,6 +711,21 @@ tracks/1/keys = {
 "method": &"roll_animation_finished"
 }]
 }
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("EvadeSound")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_gemto")
+}],
+"times": PackedFloat32Array(0.2)
+}
+tracks/2/use_blend = true
 
 [sub_resource type="Animation" id="Animation_ddb3r"]
 resource_name = "roll_right"
@@ -603,6 +756,21 @@ tracks/1/keys = {
 "method": &"roll_animation_finished"
 }]
 }
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("EvadeSound")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_gemto")
+}],
+"times": PackedFloat32Array(0.2)
+}
+tracks/2/use_blend = true
 
 [sub_resource type="Animation" id="Animation_lspqc"]
 resource_name = "roll_up"
@@ -633,6 +801,21 @@ tracks/1/keys = {
 "method": &"roll_animation_finished"
 }]
 }
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("EvadeSound")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_gemto")
+}],
+"times": PackedFloat32Array(0.2)
+}
+tracks/2/use_blend = true
 
 [sub_resource type="Animation" id="Animation_b7ha5"]
 resource_name = "run_down"
@@ -866,7 +1049,7 @@ states/roll/position = Vector2(362.222, -20)
 states/run/node = SubResource("AnimationNodeBlendSpace2D_ugki3")
 states/run/position = Vector2(568.667, 100)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_k671w"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_tbba5"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_60ml1"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_k2yqo"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_8dlo1"), "idle", "roll", SubResource("AnimationNodeStateMachineTransition_4btx8"), "roll", "idle", SubResource("AnimationNodeStateMachineTransition_at3ha")]
-graph_offset = Vector2(-129, -143)
+graph_offset = Vector2(-139, 66)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a2kmm"]
 radius = 11.0
@@ -881,8 +1064,8 @@ collision_layer = 2
 script = ExtResource("1_fnic3")
 
 [node name="Stats" parent="." instance=ExtResource("2_3iye8")]
-max_health = 15
-health = 12
+max_health = 20
+health = 15
 
 [node name="Shadow" type="Sprite2D" parent="."]
 position = Vector2(0, 1)
@@ -892,7 +1075,7 @@ texture = ExtResource("9_yuc80")
 position = Vector2(0, -9)
 texture = ExtResource("2_qace6")
 hframes = 60
-frame = 36
+frame = 28
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -909,14 +1092,14 @@ active = false
 tree_root = SubResource("AnimationNodeStateMachine_vr21y")
 advance_expression_base_node = NodePath("")
 anim_player = NodePath("../AnimationPlayer")
-parameters/attack/blend_position = Vector2(0, 0)
+parameters/attack/blend_position = Vector2(-0.491525, -0.726908)
 parameters/idle/blend_position = Vector2(-0.000376642, 0)
-parameters/roll/blend_position = Vector2(0, 0)
+parameters/roll/blend_position = Vector2(-0.516384, -0.437751)
 parameters/run/blend_position = Vector2(0, 0)
 
 [node name="SwordPivot" type="Marker2D" parent="."]
 position = Vector2(0, -6)
-rotation = 2.35619
+rotation = 5.49779
 
 [node name="SwordHitBox" parent="SwordPivot" instance=ExtResource("3_e20jo")]
 visible = false
@@ -939,11 +1122,19 @@ shape = SubResource("CapsuleShape2D_3f57i")
 
 [node name="HitEffect" parent="." instance=ExtResource("7_inirs")]
 position = Vector2(0, -8)
+enable_sound = false
 
 [node name="DeathEffect" parent="." instance=ExtResource("8_w1ayo")]
 position = Vector2(0, 8)
 frame = 0
 frame_progress = 0.0
+
+[node name="HurtSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_hak76")
+
+[node name="EvadeSound" type="AudioStreamPlayer2D" parent="."]
+
+[node name="SwipeSound" type="AudioStreamPlayer2D" parent="."]
 
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 

@@ -4,7 +4,7 @@ const heart_indicator = preload("res://UI/heart_indicator.tscn")
 
 @export var hearts_vert_padding: int = 2
 @export var hearts_horz_padding: int = 2
-@export var hearts_per_line: int = 5
+@export var hearts_per_line: int = 10
 
 @onready var hearts_container = $hearts
 
@@ -25,8 +25,8 @@ func add_heart(initial: HeartIndicator.HeartState):
 	var col = size % hearts_per_line
 	
 	var indicator: HeartIndicator = heart_indicator.instantiate()
-	indicator.position.y = (30 + hearts_vert_padding) * row
-	indicator.position.x = (22 + hearts_horz_padding) * col
+	indicator.position.y = (15 + hearts_vert_padding) * row
+	indicator.position.x = (11 + hearts_horz_padding) * col
 	indicator.set_potential(initial)
 
 	hearts_container.add_child(indicator)
