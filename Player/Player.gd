@@ -1,6 +1,4 @@
-extends CharacterBody2D
-
-class_name Player
+class_name Player extends CharacterBody2D
 
 @export_category("Movement")
 @export var acceleration: int = 400
@@ -60,26 +58,26 @@ func _physics_process(delta):
 
 func attack_state(_delta):
 	velocity = Vector2.ZERO
-	
+
 	animation_state.travel("attack")
-	
+
 func attack_animation_finished():
 	state = State.Move
 
 func roll_state(_delta):
 	animation_state.travel("roll")
 	hurt_box.monitoring = false;
-	
+
 	velocity = roll_vector * roll_speed
-	
+
 	move_and_slide()
 
 func roll_animation_finished():
 	if get_input_vector() == Vector2.ZERO:
 		velocity = roll_vector * 0.8
-	
+
 	hurt_box.monitoring = true;
-	
+
 	state = State.Move
 
 func update_anim_tree_blend(vector):
@@ -102,9 +100,9 @@ func move_state(delta):
 		roll_vector = input_vector
 		sword_hit_box.knockback_vector = input_vector
 
-		update_anim_tree_blend(input_vector)
-
 		animation_state.travel("run")
+
+		update_anim_tree_blend(input_vector)
 
 		velocity = velocity.move_toward(input_vector * max_speed, acceleration * delta)
 	else:
@@ -124,13 +122,13 @@ func disable_hurtbox(value: bool):
 
 func set_alive():
 	dead = false
-	
+
 	sprite.visible = true
 	shadow.visible = true
 
 func set_dead():
 	dead = true
-	
+
 	sprite.visible = false
 	shadow.visible = false
 

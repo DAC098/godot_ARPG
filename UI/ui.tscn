@@ -1,6 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://civrbf4u0lg6r"]
+[gd_scene load_steps=5 format=3 uid="uid://civrbf4u0lg6r"]
 
 [ext_resource type="Script" path="res://UI/ui.gd" id="1_5sg2s"]
+[ext_resource type="Texture2D" uid="uid://b6qfyfnkxpegl" path="res://Enemies/Bat-icon.png" id="2_54kje"]
+[ext_resource type="FontFile" uid="uid://ygqd7xb7hrd7" path="res://PeaberryBase.ttf" id="2_xo6cd"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jxn5q"]
+font = ExtResource("2_xo6cd")
+shadow_size = 0
+shadow_offset = Vector2(0, 0)
 
 [node name="Ui" type="Control"]
 layout_mode = 3
@@ -19,3 +26,33 @@ offset_left = 10.0
 offset_top = 10.0
 offset_right = 50.0
 offset_bottom = 50.0
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -64.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = 20.0
+grow_horizontal = 0
+
+[node name="EnemiesCounter" type="HFlowContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="Label" parent="PanelContainer/EnemiesCounter"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "100"
+label_settings = SubResource("LabelSettings_jxn5q")
+horizontal_alignment = 2
+vertical_alignment = 1
+text_direction = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/EnemiesCounter"]
+layout_mode = 2
+size_flags_horizontal = 2
+texture = ExtResource("2_54kje")
+stretch_mode = 2

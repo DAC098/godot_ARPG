@@ -1,6 +1,4 @@
-extends Node
-
-class_name Stats
+class_name Stats extends Node
 
 @export_category("Health")
 @export var max_health: int = 1

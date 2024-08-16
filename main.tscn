@@ -29,3 +29,5 @@ smoothing_distance = 1
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Ui" parent="CanvasLayer" instance=ExtResource("4_5rin4")]
+
+[connection signal="enemies_changed" from="OverWorld" to="." method="_on_over_world_enemies_changed"]

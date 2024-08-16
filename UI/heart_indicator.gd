@@ -1,6 +1,4 @@
-extends Control
-
-class_name HeartIndicator
+class_name HeartIndicator extends Control
 
 @onready var empty: TextureRect = $empty
 @onready var full: TextureRect = $full

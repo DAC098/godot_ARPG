@@ -1,6 +1,4 @@
-extends CharacterBody2D
-
-class_name Bat
+class_name Bat extends CharacterBody2D
 
 @export_category("Movement")
 @export var acceleration = 200
@@ -29,6 +27,8 @@ var state = Idle
 @onready var hit_effect = $HitEffect
 @onready var detection = $PlayerDetection
 
+signal killed(Bat)
+
 func _physics_process(delta):
 	match state:
 		Idle:
@@ -55,14 +55,16 @@ func _on_hurt_box_area_entered(area):
 	velocity = area.knockback_vector * 150
 
 	if !stats.apply_damage(area):
+		emit_signal("killed", self)
+
 		state = Idle
-		
+
 		hit_box_collider.set_deferred("disabled", true)
 		hurt_box_collider.set_deferred("disabled", true)
-		
+
 		alive_anim.stop()
 		alive_anim.visible = false
-		
+
 		death_anim.run_effect()
 	else:
 		hit_effect.run_effect()
