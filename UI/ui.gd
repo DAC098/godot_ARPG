@@ -7,7 +7,7 @@ const heart_indicator = preload("res://UI/heart_indicator.tscn")
 @export var hearts_per_line: int = 10
 
 @onready var hearts_container = $hearts
-@onready var enemy_counter_text = $PanelContainer/EnemiesCounter/RichTextLabel
+@onready var enemy_counter: EnemyCounter = $Counters/EnemyCounter
 
 var current_max_health: int = 0
 var current_health: int = 0
@@ -118,4 +118,4 @@ func set_health(value: int):
 	current_health_index = modded
 
 func set_enemy_count(count: int):
-	enemy_counter_text.text = str(count)
+	enemy_counter.update_count(count)
