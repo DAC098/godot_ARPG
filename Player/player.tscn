@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://bpf7vfmpkqtuf"]
+[gd_scene load_steps=70 format=3 uid="uid://bpf7vfmpkqtuf"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_fnic3"]
 [ext_resource type="PackedScene" uid="uid://dp3muv45wsfs" path="res://stats.tscn" id="2_3iye8"]
@@ -1057,7 +1057,9 @@ height = 34.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3f57i"]
 radius = 5.0
-height = 14.0
+height = 10.0
+
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_7amko"]
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
@@ -1075,7 +1077,7 @@ texture = ExtResource("9_yuc80")
 position = Vector2(0, -9)
 texture = ExtResource("2_qace6")
 hframes = 60
-frame = 28
+frame = 39
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -1088,21 +1090,19 @@ libraries = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-active = false
 tree_root = SubResource("AnimationNodeStateMachine_vr21y")
 advance_expression_base_node = NodePath("")
 anim_player = NodePath("../AnimationPlayer")
-parameters/attack/blend_position = Vector2(-0.491525, -0.726908)
+parameters/attack/blend_position = Vector2(0, 0)
 parameters/idle/blend_position = Vector2(-0.000376642, 0)
-parameters/roll/blend_position = Vector2(-0.516384, -0.437751)
+parameters/roll/blend_position = Vector2(0, 0)
 parameters/run/blend_position = Vector2(0, 0)
 
 [node name="SwordPivot" type="Marker2D" parent="."]
 position = Vector2(0, -6)
-rotation = 5.49779
+rotation = 2.35619
 
 [node name="SwordHitBox" parent="SwordPivot" instance=ExtResource("3_e20jo")]
-visible = false
 position = Vector2(15, 0)
 collision_layer = 256
 collision_mask = 131080
@@ -1117,7 +1117,7 @@ collision_layer = 65536
 collision_mask = 512
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
-position = Vector2(0, -3)
+position = Vector2(0, -6)
 shape = SubResource("CapsuleShape2D_3f57i")
 
 [node name="HitEffect" parent="." instance=ExtResource("7_inirs")]
@@ -1135,6 +1135,7 @@ stream = ExtResource("10_hak76")
 [node name="EvadeSound" type="AudioStreamPlayer2D" parent="."]
 
 [node name="SwipeSound" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamPolyphonic_7amko")
 
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 
