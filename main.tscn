@@ -7,13 +7,16 @@
 [ext_resource type="PackedScene" uid="uid://civrbf4u0lg6r" path="res://UI/ui.tscn" id="4_5rin4"]
 
 [node name="Main" type="Node2D"]
+process_mode = 3
 y_sort_enabled = true
 script = ExtResource("1_8atpa")
 
 [node name="OverWorld" parent="." instance=ExtResource("1_4t7md")]
+process_mode = 1
 
 [node name="Player" parent="." instance=ExtResource("3_agk1x")]
 unique_name_in_owner = true
+process_mode = 1
 position = Vector2(176, 240)
 
 [node name="MainCam" type="Camera2D" parent="."]
@@ -31,3 +34,5 @@ smoothing_distance = 1
 [node name="Ui" parent="CanvasLayer" instance=ExtResource("4_5rin4")]
 
 [connection signal="enemies_changed" from="OverWorld" to="." method="_on_over_world_enemies_changed"]
+[connection signal="exit_pressed" from="CanvasLayer/Ui" to="." method="_on_ui_exit_pressed"]
+[connection signal="resume_pressed" from="CanvasLayer/Ui" to="." method="_on_ui_resume_pressed"]

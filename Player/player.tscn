@@ -1100,7 +1100,6 @@ parameters/run/blend_position = Vector2(0, 0)
 
 [node name="SwordPivot" type="Marker2D" parent="."]
 position = Vector2(0, -6)
-rotation = 2.35619
 
 [node name="SwordHitBox" parent="SwordPivot" instance=ExtResource("3_e20jo")]
 position = Vector2(15, 0)

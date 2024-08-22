@@ -2,12 +2,17 @@ extends Control
 
 const heart_indicator = preload("res://UI/heart_indicator.tscn")
 
+signal resume_pressed
+signal exit_pressed
+
 @export var hearts_vert_padding: int = 2
 @export var hearts_horz_padding: int = 2
 @export var hearts_per_line: int = 10
 
-@onready var hearts_container = $hearts
-@onready var enemy_counter: EnemyCounter = $Counters/EnemyCounter
+@onready var menu := $Menu
+
+@onready var hearts_container := $hearts
+@onready var enemy_counter := $Counters/EnemyCounter
 
 var current_max_health: int = 0
 var current_health: int = 0
@@ -18,13 +23,11 @@ var current_indicators: Array[HeartIndicator] = []
 func _ready():
 	print("ui ready")
 
-	pass # Replace with function body.
-
 func add_heart(initial: HeartIndicator.HeartState):
 	var size = current_indicators.size()
 	var row = size / hearts_per_line
 	var col = size % hearts_per_line
-	
+
 	var indicator: HeartIndicator = heart_indicator.instantiate()
 	indicator.position.y = (15 + hearts_vert_padding) * row
 	indicator.position.x = (11 + hearts_horz_padding) * col
@@ -52,7 +55,7 @@ func set_max_health(value: int):
 		# remove indicators
 		for index in range(modded, current_indicators.size()):
 			current_indicators[index].set_potential(HeartIndicator.HeartState.Empty)
-		
+
 		current_indicators[modded - 1].set_potential(last)
 	elif value > current_max_health:
 		# add indicators
@@ -119,3 +122,12 @@ func set_health(value: int):
 
 func set_enemy_count(count: int):
 	enemy_counter.update_count(count)
+
+func display_menu(vis: bool) -> void:
+	menu.visible = vis
+
+func _on_resume_pressed():
+	resume_pressed.emit()
+
+func _on_exit_pressed():
+	exit_pressed.emit()
