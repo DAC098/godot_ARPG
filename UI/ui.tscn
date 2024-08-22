@@ -78,10 +78,16 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("3_emoav")
 text = "Resume"
 
+[node name="RestartGame" type="Button" parent="Menu/VBoxContainer/HFlowContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_emoav")
+text = "Restart"
+
 [node name="ExitGame" type="Button" parent="Menu/VBoxContainer/HFlowContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_emoav")
 text = "Quit"
 
 [connection signal="pressed" from="Menu/VBoxContainer/HFlowContainer/ResumeGame" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="Menu/VBoxContainer/HFlowContainer/RestartGame" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="Menu/VBoxContainer/HFlowContainer/ExitGame" to="." method="_on_exit_pressed"]

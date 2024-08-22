@@ -35,4 +35,5 @@ smoothing_distance = 1
 
 [connection signal="enemies_changed" from="OverWorld" to="." method="_on_over_world_enemies_changed"]
 [connection signal="exit_pressed" from="CanvasLayer/Ui" to="." method="_on_ui_exit_pressed"]
+[connection signal="restart_pressed" from="CanvasLayer/Ui" to="." method="_on_ui_restart_pressed"]
 [connection signal="resume_pressed" from="CanvasLayer/Ui" to="." method="_on_ui_resume_pressed"]

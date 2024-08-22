@@ -1,15 +1,24 @@
-extends Control
+class_name Ui extends Control
 
 const heart_indicator = preload("res://UI/heart_indicator.tscn")
 
+enum MenuType {
+	Pause,
+	Death,
+	Won
+}
+
 signal resume_pressed
 signal exit_pressed
+signal restart_pressed
 
 @export var hearts_vert_padding: int = 2
 @export var hearts_horz_padding: int = 2
 @export var hearts_per_line: int = 10
 
 @onready var menu := $Menu
+@onready var menu_title := $Menu/VBoxContainer/Label
+@onready var resume_button := $Menu/VBoxContainer/HFlowContainer/ResumeGame
 
 @onready var hearts_container := $hearts
 @onready var enemy_counter := $Counters/EnemyCounter
@@ -123,11 +132,28 @@ func set_health(value: int):
 func set_enemy_count(count: int):
 	enemy_counter.update_count(count)
 
-func display_menu(vis: bool) -> void:
-	menu.visible = vis
+func display_menu(type: MenuType) -> void:
+	menu.visible = true
+
+	match type:
+		MenuType.Pause:
+			menu_title.text = "Paused"
+			resume_button.visible = true
+		MenuType.Death:
+			menu_title.text = "You have Died"
+			resume_button.visible = false
+		MenuType.Won:
+			menu_title.text= "You have Won"
+			resume_button.visible = false
+
+func hide_menu() -> void:
+	menu.visible = false
 
 func _on_resume_pressed():
 	resume_pressed.emit()
 
 func _on_exit_pressed():
 	exit_pressed.emit()
+
+func _on_restart_pressed():
+	restart_pressed.emit()
